@@ -31,13 +31,15 @@
     
     self.layerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
     self.layerView.center = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height/2);
-    self.layerView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.layerView];
+    self.layerView.backgroundColor = [UIColor yellowColor];
     
-    CALayer *blueLayer = [CALayer layer];
-    blueLayer.frame = CGRectMake(50.0, 50.0, 100.0, 100.0);
-    blueLayer.backgroundColor = [UIColor blueColor].CGColor;
-    [self.layerView.layer addSublayer:blueLayer];
+    UIImage *image = [UIImage imageNamed:@"rings.png"];
+    self.layerView.layer.contents = (__bridge id)image.CGImage;
+    self.layerView.layer.contentsGravity = kCAGravityCenter;
+    self.layerView.layer.contentsScale = image.scale;
+    self.layerView.layer.contentsRect = CGRectMake(0, 0, 0.5, 0.5);
+    
+    [self.view addSubview:self.layerView];
 }
 
 @end

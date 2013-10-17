@@ -20,6 +20,7 @@
 		38A26453180F1EFE00C29130 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38A26451180F1EFE00C29130 /* InfoPlist.strings */; };
 		38A26455180F1EFE00C29130 /* CoreAnimationATTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A26454180F1EFE00C29130 /* CoreAnimationATTests.m */; };
 		38A26460180F1FBC00C29130 /* JSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A2645F180F1FBC00C29130 /* JSViewController.m */; };
+		38A26462180F28DD00C29130 /* rings.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A26461180F28DD00C29130 /* rings.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		38A26454180F1EFE00C29130 /* CoreAnimationATTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreAnimationATTests.m; sourceTree = "<group>"; };
 		38A2645E180F1FBC00C29130 /* JSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSViewController.h; sourceTree = "<group>"; };
 		38A2645F180F1FBC00C29130 /* JSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSViewController.m; sourceTree = "<group>"; };
+		38A26461180F28DD00C29130 /* rings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rings.png; path = Images.xcassets/rings.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				38A2643E180F1EFE00C29130 /* JSAppDelegate.h */,
 				38A2643F180F1EFE00C29130 /* JSAppDelegate.m */,
 				38A26441180F1EFE00C29130 /* Images.xcassets */,
+				38A26461180F28DD00C29130 /* rings.png */,
 				38A26436180F1EFE00C29130 /* Supporting Files */,
 				38A2645E180F1FBC00C29130 /* JSViewController.h */,
 				38A2645F180F1FBC00C29130 /* JSViewController.m */,
@@ -225,6 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A26462180F28DD00C29130 /* rings.png in Resources */,
 				38A2643A180F1EFE00C29130 /* InfoPlist.strings in Resources */,
 				38A26442180F1EFE00C29130 /* Images.xcassets in Resources */,
 			);
@@ -450,6 +454,7 @@
 				38A2645A180F1EFE00C29130 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		38A2645B180F1EFE00C29130 /* Build configuration list for PBXNativeTarget "CoreAnimationATTests" */ = {
 			isa = XCConfigurationList;
@@ -458,6 +463,7 @@
 				38A2645D180F1EFE00C29130 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
