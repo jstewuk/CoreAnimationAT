@@ -62,12 +62,18 @@
     self.colorLayer = [CALayer layer];
     self.colorLayer.frame = CGRectMake(50.0, 50.0, 100.0, 100.0);
     self.colorLayer.backgroundColor = [UIColor blueColor].CGColor;
+    
+    CATransition *transition = [CATransition animation];
+    transition.type = kCATransitionFade;
+    transition.subtype = kCATransitionFromLeft;
+    self.colorLayer.actions = @{@"backgroundColor": transition};
+    
     [self.layerView.layer addSublayer:self.colorLayer];
 }
 
 - (void)changeColor {
     [CATransaction begin];
-    [CATransaction setAnimationDuration:2.0];
+    [CATransaction setAnimationDuration:1.0];
     
     // WTH does this have to go before the propery animation to make it happen at completion???
     [CATransaction setCompletionBlock:^{
