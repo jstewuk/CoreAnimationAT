@@ -30,7 +30,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self addButton];
-        
+    
     [self addColorLayerAsSublayer];
     
 }
@@ -69,16 +69,17 @@
     
     
     CABasicAnimation *animation = [CABasicAnimation animation];
-    CALayer *layer = self.colorLayer.presentationLayer ?:self.colorLayer;
-    animation.fromValue = (__bridge id)layer.backgroundColor;
-    [CATransaction begin];
-    [CATransaction setDisableActions:YES];
-    self.colorLayer.backgroundColor = color.CGColor;
-    [CATransaction commit];
     animation.keyPath = @"backgroundColor";
     animation.toValue = (__bridge id)color.CGColor;
+    animation.delegate = self;
     
     [self.colorLayer addAnimation:animation forKey:nil];
 }
 
+- (void)animationDidStop:(CABasicAnimation *)anim finished:(BOOL)flag {
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    self.colorLayer.backgroundColor = (__bridge CGColorRef)anim.toValue;
+    [CATransaction commit]; 
+}
 @end
