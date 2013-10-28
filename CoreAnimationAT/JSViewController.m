@@ -27,8 +27,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
+    [self addButton];
+        
     [self addColorLayerAsSublayer];
     
 }
@@ -36,6 +38,8 @@
 - (void)addColorLayerAsSublayer {
     self.colorLayer = [CALayer layer];
     self.colorLayer.frame = CGRectMake(50.0, 50.0, 100.0, 100.0);
+    self.colorLayer.position = CGPointMake(self.view.bounds.size.width / 2,
+                                           self.view.bounds.size.height/ 2);
     self.colorLayer.backgroundColor = [UIColor blueColor].CGColor;
     
     CATransition *transition = [CATransition animation];
@@ -46,20 +50,35 @@
     [self.view.layer addSublayer:self.colorLayer];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    CGPoint point = [[touches anyObject] locationInView:self.view];
+- (void)addButton {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setTitle:@"Change Color" forState:UIControlStateNormal];
+    [button sizeToFit];
+    button.center = CGPointMake(self.view.bounds.size.width / 2,
+                                self.view.bounds.size.height/ 2 + 75);
+    [button addTarget:self action:@selector(changeColor) forControlEvents:UIControlEventTouchUpInside];
     
-    if ([self.colorLayer.presentationLayer hitTest:point]) {
-        CGFloat red = arc4random() / (CGFloat)INT_MAX;
-        CGFloat green = arc4random() / (CGFloat)INT_MAX;
-        CGFloat blue = arc4random() / (CGFloat)INT_MAX;
-        self.colorLayer.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0].CGColor;
-    } else {
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:4.0];
-        self.colorLayer.position = point;
-        [CATransaction commit];
-    }
+    [self.view addSubview:button];
+}
+
+- (void)changeColor {
+    CGFloat red = arc4random() / (CGFloat)INT_MAX;
+    CGFloat green = arc4random() / (CGFloat)INT_MAX;
+    CGFloat blue = arc4random() / (CGFloat)INT_MAX;
+    UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+    
+    
+    CABasicAnimation *animation = [CABasicAnimation animation];
+    CALayer *layer = self.colorLayer.presentationLayer ?:self.colorLayer;
+    animation.fromValue = (__bridge id)layer.backgroundColor;
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    self.colorLayer.backgroundColor = color.CGColor;
+    [CATransaction commit];
+    animation.keyPath = @"backgroundColor";
+    animation.toValue = (__bridge id)color.CGColor;
+    
+    [self.colorLayer addAnimation:animation forKey:nil];
 }
 
 @end
