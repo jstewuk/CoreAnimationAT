@@ -62,24 +62,15 @@
 }
 
 - (void)changeColor {
-    CGFloat red = arc4random() / (CGFloat)INT_MAX;
-    CGFloat green = arc4random() / (CGFloat)INT_MAX;
-    CGFloat blue = arc4random() / (CGFloat)INT_MAX;
-    UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
-    
-    
-    CABasicAnimation *animation = [CABasicAnimation animation];
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
     animation.keyPath = @"backgroundColor";
-    animation.toValue = (__bridge id)color.CGColor;
-    animation.delegate = self;
-    
+    animation.duration = 2.0;
+    animation.values = @[(__bridge id)[UIColor blueColor].CGColor,
+                         (__bridge id)[UIColor redColor].CGColor,
+                         (__bridge id)[UIColor greenColor].CGColor,
+                         (__bridge id)[UIColor blueColor].CGColor
+                         ];
     [self.colorLayer addAnimation:animation forKey:nil];
 }
 
-- (void)animationDidStop:(CABasicAnimation *)anim finished:(BOOL)flag {
-    [CATransaction begin];
-    [CATransaction setDisableActions:YES];
-    self.colorLayer.backgroundColor = (__bridge CGColorRef)anim.toValue;
-    [CATransaction commit]; 
-}
 @end
