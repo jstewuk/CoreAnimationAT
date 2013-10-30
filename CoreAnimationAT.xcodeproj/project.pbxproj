@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38A2040D181DF84300B56CE5 /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A2040C181DF84300B56CE5 /* ship.png */; };
 		38A26430180F1EFE00C29130 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A2642F180F1EFE00C29130 /* Foundation.framework */; };
 		38A26432180F1EFE00C29130 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A26431180F1EFE00C29130 /* CoreGraphics.framework */; };
 		38A26434180F1EFE00C29130 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A26433180F1EFE00C29130 /* UIKit.framework */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		38A2040C181DF84300B56CE5 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
 		38A2642C180F1EFE00C29130 /* CoreAnimationAT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreAnimationAT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38A2642F180F1EFE00C29130 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		38A26431180F1EFE00C29130 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +130,7 @@
 		38A26435180F1EFE00C29130 /* CoreAnimationAT */ = {
 			isa = PBXGroup;
 			children = (
+				38A2040C181DF84300B56CE5 /* ship.png */,
 				38A2643E180F1EFE00C29130 /* JSAppDelegate.h */,
 				38A2643F180F1EFE00C29130 /* JSAppDelegate.m */,
 				38A26441180F1EFE00C29130 /* Images.xcassets */,
@@ -251,6 +254,7 @@
 				38A2643A180F1EFE00C29130 /* InfoPlist.strings in Resources */,
 				38A26464181081BA00C29130 /* SpriteSheet.png in Resources */,
 				38A26442180F1EFE00C29130 /* Images.xcassets in Resources */,
+				38A2040D181DF84300B56CE5 /* ship.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

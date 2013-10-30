@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface JSViewController ()
-@property(nonatomic, strong) CALayer *colorLayer;
+@property(nonatomic, strong) UIView *containerView;
 
 
 
@@ -27,14 +27,66 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor grayColor];
     
-    [self addButton];
+    [self addContainerView];
     
-    [self addColorLayerAsSublayer];
-    
+    UIBezierPath *path = [self path];
+    [self drawPathInContainerView:path];
+    CALayer *shipLayer = [self shipAddedToContainerView];
+    [self addKFAnimationTo:shipLayer onPath:path];
 }
 
+- (void)addContainerView {
+    self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 300.0)];
+    self.containerView.center = self.view.center;
+    self.containerView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.containerView];
+}
+
+- (UIBezierPath *)path {
+    UIBezierPath *bPath = [[UIBezierPath alloc] init];
+    [bPath moveToPoint:CGPointMake(0, 150)];
+    [bPath addCurveToPoint:CGPointMake(300, 150)
+             controlPoint1:CGPointMake(75, 0)
+             controlPoint2:CGPointMake(225, 300)];
+    return bPath;
+}
+
+- (void)drawPathInContainerView:(UIBezierPath *)path {
+    CAShapeLayer *pathLayer = [CAShapeLayer layer];
+    pathLayer.path = path.CGPath;
+    pathLayer.fillColor = [UIColor clearColor].CGColor;
+    pathLayer.strokeColor = [UIColor redColor].CGColor;
+    pathLayer.lineWidth = 3.0f;
+    [self.containerView.layer addSublayer:pathLayer];
+}
+
+- (CALayer *)shipAddedToContainerView {
+    CALayer *shipLayer = [CALayer layer];
+    shipLayer.frame = CGRectMake(0, 0, 64, 64);
+    shipLayer.position = CGPointMake(0, 150);
+    shipLayer.contents = (__bridge id)[UIImage imageNamed:@"ship.png"].CGImage;
+    [self.containerView.layer addSublayer:shipLayer];
+    return shipLayer;
+}
+
+- (void)addKFAnimationTo:(CALayer *)layer onPath:(UIBezierPath *)path {
+    CAKeyframeAnimation *anim = [CAKeyframeAnimation animation];
+    anim.keyPath = @"position";
+    anim.duration = 4.0;
+    anim.path = path.CGPath;
+    anim.rotationMode = kCAAnimationRotateAuto;
+    [layer addAnimation:anim forKey:nil];
+    
+    CABasicAnimation *rotAnim = [CABasicAnimation animation];
+    rotAnim.keyPath = @"transform.rotation";
+    rotAnim.duration = 2.0;
+    rotAnim.byValue = @(M_PI * 2);
+    [layer addAnimation:rotAnim forKey:nil];
+}
+
+/*
 - (void)addColorLayerAsSublayer {
     self.colorLayer = [CALayer layer];
     self.colorLayer.frame = CGRectMake(50.0, 50.0, 100.0, 100.0);
@@ -60,17 +112,6 @@
     
     [self.view addSubview:button];
 }
-
-- (void)changeColor {
-    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-    animation.keyPath = @"backgroundColor";
-    animation.duration = 2.0;
-    animation.values = @[(__bridge id)[UIColor blueColor].CGColor,
-                         (__bridge id)[UIColor redColor].CGColor,
-                         (__bridge id)[UIColor greenColor].CGColor,
-                         (__bridge id)[UIColor blueColor].CGColor
-                         ];
-    [self.colorLayer addAnimation:animation forKey:nil];
-}
+*/
 
 @end
